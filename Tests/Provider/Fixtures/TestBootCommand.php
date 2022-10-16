@@ -21,5 +21,7 @@ class TestBootCommand extends Command
         $silex = $this->getSilexApplication();
 
         $output->write($silex->isBooted() ? 'Booted' : 'Not booted');
+
+        return 0;
     }
 }

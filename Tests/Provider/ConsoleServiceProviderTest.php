@@ -15,8 +15,9 @@ use Symfony\Component\Console\ConsoleEvents;
 use Symfony\Component\Console\Tester\ApplicationTester;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Yaml\Command\LintCommand as LintYamlCommand;
+use PHPUnit\Framework\TestCase;
 
-class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
+class ConsoleServiceProviderTest extends TestCase
 {
     public function testDefaultConfiguration()
     {
@@ -32,7 +33,7 @@ class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
         $tester = new ApplicationTester($console);
         $tester->run(['command' => 'test:test']);
 
-        $this->assertContains('Test command', $tester->getDisplay());
+        $this->assertStringContainsString('Test command', $tester->getDisplay());
     }
 
     public function testApplicationParametersAreInjected()
@@ -159,7 +160,7 @@ class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
         ]);
         $output = $tester->getDisplay();
 
-        $this->assertContains('[OK] All 1 Twig files contain valid syntax.', $output);
+        $this->assertStringContainsString('[OK] All 1 Twig files contain valid syntax.', $output);
     }
 
     public function testLintYamlCommand()
@@ -182,7 +183,7 @@ class ConsoleServiceProviderTest extends \PHPUnit_Framework_TestCase
         ]);
         $output = $tester->getDisplay();
 
-        $this->assertContains('[OK] All 1 YAML files contain valid syntax.', $output);
+        $this->assertStringContainsString('[OK] All 1 YAML files contain valid syntax.', $output);
     }
 
     public function testApplicationBootsBeforeCommand()

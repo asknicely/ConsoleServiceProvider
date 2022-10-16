@@ -18,5 +18,7 @@ class TestCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $output->write('Test command');
+
+        return 0;
     }
 }

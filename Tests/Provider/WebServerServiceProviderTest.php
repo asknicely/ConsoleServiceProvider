@@ -6,10 +6,11 @@ use Knp\Provider\ConsoleServiceProvider;
 use Knp\Provider\WebServerServiceProvider;
 use Silex\Application;
 use Symfony\Bundle\WebServerBundle\Command\ServerRunCommand;
+use PHPUnit\Framework\TestCase;
 
-class WebServerServiceProviderTest extends \PHPUnit_Framework_TestCase
+class WebServerServiceProviderTest extends TestCase
 {
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         if (!class_exists(ServerRunCommand::class)) {
             self::markTestSkipped('The web-server-bundle component is not installed');
@@ -33,24 +34,22 @@ class WebServerServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($console->has('server:log'));
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage You must register the ConsoleServiceProvider to use the WebServerServiceProvider.
-     */
     public function testRegistrationFailsIfNoConsoleProvider()
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('You must register the ConsoleServiceProvider to use the WebServerServiceProvider.');
+
         $app = new Application();
         $app->register(new WebServerServiceProvider(), [
             'web_server.document_root' => __DIR__,
         ]);
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage You must set the web_server.document_root parameter to use the development web server.
-     */
     public function testCannotLoadRunCommandIfNoDocumentRootSet()
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('You must set the web_server.document_root parameter to use the development web server.');
+
         $app = new Application();
         $app->register(new ConsoleServiceProvider());
         $app->register(new WebServerServiceProvider());
@@ -58,12 +57,11 @@ class WebServerServiceProviderTest extends \PHPUnit_Framework_TestCase
         echo $app['web_server.command.server_run'];
     }
 
-    /**
-     * @expectedException \LogicException
-     * @expectedExceptionMessage You must set the web_server.document_root parameter to use the development web server.
-     */
     public function testCannotLoadStartCommandIfNoDocumentRootSet()
     {
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('You must set the web_server.document_root parameter to use the development web server.');
+
         $app = new Application();
         $app->register(new ConsoleServiceProvider());
         $app->register(new WebServerServiceProvider());

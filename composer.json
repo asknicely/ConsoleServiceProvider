@@ -12,18 +12,25 @@
         }
     ],
     "require": {
-        "php":              ">=5.5.9",
-        "symfony/console":   "^2.3|^3.0|^4.0",
-        "silex/silex": "~2.0"
+        "php": ">=5.5.9",
+        "silex/silex": "dev-symfony4-upgrade",
+        "symfony/console":   "^2.3|^3.0|^4.4"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^3.2|^4.0",
-        "twig/twig": "~1.27|~2.0",
-        "symfony/twig-bridge": "~2.8|^3.0|^4.0",
-        "symfony/web-server-bundle": "^3.3|^4.0",
-        "symfony/monolog-bridge": "^3.2|^4.0",
-        "symfony/yaml": "^2.8|^3.0|^4.0"
+        "phpunit/phpunit": "^9.0",
+        "symfony/monolog-bridge": "^3.2|^4.4",
+        "symfony/phpunit-bridge": "^3.2|^4.4",
+        "symfony/twig-bridge": "~2.8|^3.0|^4.4",
+        "symfony/web-server-bundle": "^3.3|^4.4",
+        "symfony/yaml": "^2.8|^3.0|^4.4",
+        "twig/twig": "~1.27|~2.0|^3"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/asknicely/Silex.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Knp\\": "Knp/"
@@ -36,7 +43,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "2.2.x-dev"
+            "dev-master": "4.x-dev"
         }
     }
 }
