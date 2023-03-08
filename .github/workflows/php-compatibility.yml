@@ -2,9 +2,9 @@ name: PHP Version Check
 
 on:
   push:
-    branches: [symfony4-upgrade]
+    branches: [symfony5-upgrade]
   pull_request:
-    branches: [symfony4-upgrade]
+    branches: [symfony5-upgrade]
 
 jobs:
 
